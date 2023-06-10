@@ -3,6 +3,10 @@ import './Signup.css'
 import  axios  from 'axios'
 import { useNavigate } from 'react-router-dom'
 
+
+
+
+
 function Signup() {
 
   const[email,setEmail]=useState("")
@@ -16,7 +20,6 @@ function Signup() {
 
   const handleSubmit=async(e)=>{
     e.preventDefault()
-    console.log(email,password,phone,lastname,firstname,"ppppppppppppppdddddddddddd");
 
     try {
       const response = await axios.post('http://localhost:5000/api/user/signup', {
@@ -26,9 +29,12 @@ function Signup() {
         lastname,
         phone,
       });
-       navigate('/login')
+      console.log(response.data,"rrrrrrrrr",response);
+       navigate('/')
     } catch (error) {
-      setError(error.message);
+      console.log(error.response.data.error);
+      setError(error.response.data.error)
+      
     }
 
 
@@ -61,7 +67,7 @@ function Signup() {
         </div>
         <div className="form-group">
           <label >Phone</label>
-          <input type="text" id="phone"
+          <input type="number" id="phone"
           onChange={(e)=>{setPhone(e.target.value)}} 
            name="phone" className="form-control" />
         </div>
@@ -78,6 +84,8 @@ function Signup() {
       <div className='btn-div'>
         <button  className="login-btn">Log In</button>
       </div>
+
+      <p>{error}</p>
     </div>
     </div>
   )

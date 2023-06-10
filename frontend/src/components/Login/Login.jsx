@@ -1,13 +1,31 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import "./Login.css"
 
 function Login() {
   const[email,setEmail]=useState("")
   const[password,setPassword]=useState("")
+  const[error,setError]=useState(null)
+
+  const navigate=useNavigate()
 
   const handleSubmit=async(e)=>{
     e.preventDefault()
-    console.log(email,password);
+   
+    
+    try {
+      const response = await axios.post('http://localhost:5000/api/user/login', {
+        email,
+        password,
+      });
+      console.log(response.data,"rrrrrrrrr",response);
+       navigate('/home')
+    } catch (error) {
+      console.log(error.response.data.error);
+      setError(error.response.data.error)
+      
+    }
   }
 
   return (
@@ -39,6 +57,7 @@ function Login() {
       <div className='btn-div' >
         <button style={{marginTop:"20px"}}  className="btn-primary">Sign Up</button>
       </div>
+      <p>{error}</p>
     </div>
 
     </div>

@@ -2,7 +2,9 @@ const validator = require('validator');
 
 const signupInputValidator = (firstname, lastname, email, password, phone) => {
   if (!email || !password || !phone || !firstname || !lastname) {
-    throw new Error('All fields must be filled');
+    return 'All fields must be filled'
+    // throw new Error('All fields must be filled');
+    
   }
   if (!validator.isAlpha(firstname) || !validator.isAlpha(lastname)) {
     throw new Error('Name must be in letters');

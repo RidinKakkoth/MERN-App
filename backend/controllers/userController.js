@@ -13,18 +13,24 @@ const loginUser=async(req,res)=>{
 
     try {
         const{email,password}=req.body
-        inputValidator.loginInputValidator(email,password)
+      const inputError=  inputValidator.loginInputValidator(email,password)
+      
+      if(inputError){
+        return res.status(400).json({ error: inputError });
+      }
 
         const user=await User.findOne({email:email})
 
         if(!user){
-            throw Error("Invalid User credential")
+            
+            return res.status(400).json({ error: "Invalid credentials" });
         }
 
         const match=await bcrypt.compare(password,user.password)
 
         if(!match){
-            throw Error("Incorrect password")
+            
+            return res.status(400).json({ error: "Incorrect password" });
         }
         
         //create token
@@ -47,12 +53,17 @@ const signupUser=async(req,res)=>{
     try {
         const{firstname,lastname,email,password,phone}=req.body;
 
-          inputValidator.signupInputValidator(firstname, lastname, email, password, phone);
+         const inputError= inputValidator.signupInputValidator(firstname, lastname, email, password, phone);
+         if(inputError){
+            return res.status(400).json({ error: inputError });
+
+         }
 
         const exist=await User.findOne({email:email})
 
         if(exist){
-            throw Error("Email already in use")
+            
+            return res.status(400).json({ error: "Email already in use" });
         }
         
         const hashPassword= await bcrypt.hash(password,10)
