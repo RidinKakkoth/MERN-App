@@ -1,0 +1,66 @@
+.edit-body {
+  background-image: url("https://th.bing.com/th/id/R.ab726d91c6708ef54ecfa084a0062f13?rik=pdJ%2bzrZIhNQ4Ng&riu=http%3a%2f%2fwww.hdwallpaperspulse.com%2fwp-content%2fuploads%2f2018%2f06%2f12%2fcool-hd-Gradient-Wallpaper.png&ehk=X4eUdXVYlRDzlhRZqFc1lTk9%2frVPM7pF2E%2b24IJuo7s%3d&risl=&pid=ImgRaw&r=0");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .edit-card {
+    width: 400px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+    
+    .user-edit-h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #660f5b;
+    }
+    
+    .form-group-edit {
+      margin-bottom: 1rem;
+    }
+    
+  .edit-label{
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #660f5b;
+    }
+    
+    .form-edit {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    
+    .btn-primary-edit {
+      background-color: #741a55;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 50%;
+      font-weight: 600;
+  
+    }
+
+    .btn-div-edit{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  
+
+    .btn-primary-edit:hover{
+      background-color: #b34548;
+    }

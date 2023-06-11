@@ -50,7 +50,7 @@ const editUser=(userId,firstname,lastname,email,phone)=>{
 }
 
 const DeleteUser=(userId)=>{
-console.log(userId,"uuuuuuuuuuu");
+
   axios.get(`${adminApi}deleteuser/${userId}`,{withCredentials:true}).then(()=>{
             setDeleteUser(!deleteUser)
     }).catch(error=>console.log(error))
@@ -97,7 +97,7 @@ return (
                 <td>{obj.phone}</td>
                 <td>
                   <Button className='edit-btn'
-                    onClick={() => editUser(obj._id, obj.firstName,obj.lastName, obj.email,obj.phone)}
+                    onClick={() => editUser(obj._id, obj.firstname,obj.lastname, obj.email,obj.phone)}
                     variant="primary"
                   >
                     Edit

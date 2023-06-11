@@ -123,19 +123,22 @@ const editUser=async(req,res)=>{
 
     if(jwtToken){
 
-        const edited=false
+        let edited=false
 
-        const{userId,editedFName,editedLName,editedPhone}=req.body
+        const { userId, editedFname, editedLname, editedEmail, editedPhone } = req.body;
 
-        const user=await User.findOne(userId)
+
+        const user=await User.findById(userId)
+
 
         if(user){
             User.updateOne({_id:userId},
                 {
                     $set:{
-                        firstname:editedFName,
-                        lastname:editedLName,
-                        phone:editedPhone
+                        firstname:editedFname,
+                        lastname:editedLname,
+                        phone:editedPhone,
+                        email:editedEmail
                     }
                 }
                 ).then(()=>{

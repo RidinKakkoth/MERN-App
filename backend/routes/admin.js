@@ -11,6 +11,6 @@ router.get("/userdata",userData)
 
 router.get("/deleteuser/:id",deleteUser)
 
-router.post("edituser",editUser)
+router.post("/edituser",editUser)
 
 module.exports=router
