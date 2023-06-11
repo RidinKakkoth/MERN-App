@@ -1,9 +1,10 @@
 .search2 {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
   padding-top: 16px;
   padding-right: 70px;
   margin-bottom: 25px;
+  align-items: center;
 }
 
 .table-wrapper {
@@ -20,8 +21,15 @@
   text-align: center; /* Add this to center the content within the table */
 }
 
-
+.heading{
+  margin-left: 5rem;
+  font-weight: 700;
+  color: rgb(46, 0, 98);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+ 
+}
 
     .font{
       color: white;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }

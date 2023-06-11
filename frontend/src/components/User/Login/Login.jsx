@@ -36,9 +36,9 @@ function Login() {
   }
 
   return (
-    <div className='login-body'>
+    <div className='login-body-user'>
 <div className="card">
-      <h1>user Log In</h1>
+      <h1 className='user-login'>LOGIN</h1>
       <form onSubmit={handleSubmit}>
 
         <div className="form-group">

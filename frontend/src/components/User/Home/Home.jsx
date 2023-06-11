@@ -6,8 +6,10 @@ function Home() {
 
 
   return (
-    <div  >
+    <div >
+    <div  className='home-bg'>
           
+    </div>
     </div>
   )
 }

@@ -1,46 +1,36 @@
 
-.navbar{
+.navbar-admin{
     width: 100vw;
     height: 10vh;
-    background: rgb(37,72,244);
-    background: linear-gradient(148deg, rgba(37,72,244,1) 15%, rgba(177,80,108,1) 84%);
+    /* background-color: rgb(76, 8, 247); */
+    background: rgb(80,12,127);
+    background: linear-gradient(148deg, rgba(80,12,127,1) 36%, rgba(255,89,136,1) 100%);
     display: flex;
     /* left: 20px; */
-    /* right: 20px; */
+    right: 20px;
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
 }
-.home{
+.dashboard{
     color: white;
     cursor: pointer;
     font-weight: 600;
-    font-size: 1.8rem;
-    margin-left: 60px;
+    font-size: 1.2rem;
+    margin-left: 50px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
 }
 
-.logout{
+.admin-logout{
   margin-right: 100px;
-  margin-top: 10px;
   width: 50px;
   color: white;
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   cursor: pointer;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-.profile{
-    margin-right: 50px;
-    color: rgb(255, 255, 255);
-    font-size: 1.8rem;
-    cursor: pointer;
-    
-}
-.nav-right{
+.nav-right-admin{
     display: flex;
-}
-.lgdiv{
-    margin-top: 10px;
 }

@@ -1,4 +1,4 @@
-.login-body {
+.login-body-user {
   background-image: url("https://img.freepik.com/free-vector/technology-background_23-2148119855.jpg?w=1060&t=st=1686319261~exp=1686319861~hmac=2a556fa54475113d08e587505d5cb1ea0279e774e6c9972bfbd20acb93695437");
   background-repeat: no-repeat;
   background-size: cover;
@@ -17,10 +17,11 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
   
-  h1 {
+ .user-login {
     text-align: center;
     margin-bottom: 20px;
     color: #660f5b;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
   
   .form-group {

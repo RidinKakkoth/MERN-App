@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 
+
 function Dashboard() {
   const [userData, setUserData] = useState([]);
   const [search, setSearch] = useState("");
@@ -62,10 +63,14 @@ return (
 
     <div className="table-wrapper">
 
+
     <div className="table">
       <div className="search2">
+
+      <h2 className='heading'>USER DATA</h2>
+
         <input
-          className="mt-5"
+          className=""
           type="text"
           placeholder="Search here"
           onChange={handleChange}
