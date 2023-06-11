@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const userRoute = require('./routes/user');
+const adminRoute=require("./routes/admin")
 const cors = require('cors');
 
 const app = express();
@@ -26,7 +27,9 @@ app.use(cookieParser());
 app.use(express.json());
 
 // Routes
-app.use('/api/user', userRoute);
+app.use('/', userRoute);
+
+app.use("/admin",adminRoute)
 
 // Connect to the database
 mongoose

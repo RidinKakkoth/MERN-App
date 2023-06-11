@@ -1,10 +1,11 @@
 const User=require('../models/userModel')
+// const Admin =require("../models/adminModel")
 const bcrypt=require("bcrypt")
 const jwt=require('jsonwebtoken')
 const inputValidator = require('../middleware/inputValidator');
 
 const createToken=(id)=>{
-    console.log(id,"iiiiiiiiiiiiiiiii");
+    
     return  jwt.sign({id:id},"secretCodeforUser",{expiresIn:'3d'})
 }
 
@@ -82,6 +83,7 @@ const signupUser=async(req,res)=>{
     
     try {
         const{firstname,lastname,email,password,phone}=req.body;
+        // const{email,password}=req.body;
 
          const inputError= inputValidator.signupInputValidator(firstname, lastname, email, password, phone);
          if(inputError){
@@ -90,6 +92,7 @@ const signupUser=async(req,res)=>{
          }
 
         const exist=await User.findOne({email:email})
+        // const exist=await Admin.findOne({email:email})
 
         if(exist){
             
@@ -97,6 +100,7 @@ const signupUser=async(req,res)=>{
         }
         
         const hashPassword= await bcrypt.hash(password,10)
+        // const newUser=new Admin({
         const newUser=new User({
             firstname,
             lastname,
@@ -127,11 +131,11 @@ const getProfile=async(req,res)=>{
         }
         
    
-        const jwtToken = req.cookies.jwt.token; // Assuming your token is stored as { token: "..." }
+        const jwtToken = req.cookies.jwt.token; //  token stored 
         
         const decodedToken = jwt.verify(jwtToken,"secretCodeforUser");
       
-        const userId = decodedToken.id; // Assuming your token payload has the user ID stored as _id
+        const userId = decodedToken.id; //  token payload has the user ID stored as id
        
       
         try {
