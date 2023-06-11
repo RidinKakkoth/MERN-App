@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import UserAuth  from "./UserAuth";
-import AdminAuth from "./AdminAuth";
+import adminAuth from "./AdminAuth";
 const Store = configureStore(
-    {reducer:{user:UserAuth.reducer,Admin:AdminAuth.reducer}}
+    {reducer:{user:UserAuth.reducer,Admin:adminAuth.reducer}}
 )
 
 export default Store

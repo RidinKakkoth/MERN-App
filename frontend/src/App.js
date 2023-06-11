@@ -1,13 +1,9 @@
-import LoginPage from './pages/User page/LoginPage.jsx';
-import SignupPage from './pages/User page/SignupPage.jsx';
-import HomePage from './pages/User page/HomePage.jsx'
-import ProfilePage from './pages/User page/ProfilePage'
-
 
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
 
 import './App.css';
-import Navbar from './components/User/Navbar/Navbar.js';
+import UserRoute from './Routes/UserRoute.js';
+import AdminRoute from './Routes/AdminRoute.js';
 
 
 function App() {
@@ -15,14 +11,11 @@ function App() {
     <div >
       <Router>
       <Routes>
-      <Route path='/' element={<LoginPage/>}/>
-      <Route path='/signup' element={<SignupPage/>}/>
-     
-      <Route path='/home' element={<><Navbar/> <HomePage/></>}/>
-      <Route path='/profile' element={<><Navbar/><ProfilePage/></>}/>
+          <Route path='/*' element={<UserRoute/>} />
+      </Routes>
 
-     
-      
+      <Routes>
+      <Route path='/admin/*' element={<AdminRoute/>} />
       </Routes>
       </Router>
     </div>

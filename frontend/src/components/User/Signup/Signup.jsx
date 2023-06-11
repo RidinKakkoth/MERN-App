@@ -46,34 +46,34 @@ function Signup() {
     <div className='signup-body'>
 
     <div className="card">
-      <h1>Sign Up</h1>
+      <h1 className='user-signup-h1'>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label >First Name</label>
+          <label className='user-signup-Label' >First Name</label>
           <input type="text" id="firstName"
           onChange={(e)=>{setFirstname(e.target.value)}} 
           name="firstName" className="form-control" />
         </div>
         <div className="form-group">
-          <label >Last Name</label>
+          <label className='user-signup-Label' >Last Name</label>
           <input type="text" id="lastName" 
           onChange={(e)=>{setLastname(e.target.value)}} 
           name="lastName" className="form-control" />
         </div>
         <div className="form-group">
-          <label >Email</label>
+          <label className='user-signup-Label'>Email</label>
           <input type="email" id="email"
           onChange={(e)=>{setEmail(e.target.value)}} 
            name="email" className="form-control" />
         </div>
         <div className="form-group">
-          <label >Phone</label>
+          <label className='user-signup-Label'>Phone</label>
           <input type="number" id="phone"
           onChange={(e)=>{setPhone(e.target.value)}} 
            name="phone" className="form-control" />
         </div>
         <div className="form-group">
-          <label >Password</label>
+          <label className='user-signup-Label'>Password</label>
           <input type="password"
           onChange={(e)=>{setPassword(e.target.value)}} 
            id="password" name="password" className="form-control" />

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { UserActions } from '../../../store/UserAuth'
+import { adminActions } from '../../../store/AdminAuth'
 
 import axios from 'axios'
-import { userApi } from '../../../store/Api'
-import "./UserLogin.css"
+import { adminApi } from '../../../store/Api'
+import "./Login.css"
 
 function Login() {
   const dispatch = useDispatch()
@@ -18,16 +18,18 @@ function Login() {
   const handleSubmit=async(e)=>{
     e.preventDefault()
     
-    axios.post(`${userApi}login`,  {
+    axios.post(`${adminApi}login`,  {
       email,
       password
     },{ withCredentials: true })
       .then((response) => {
-        const result=response.data.userLogin
+        const result=response.data.adminLogin
         if(result.status){
-          dispatch(UserActions.userAddDetails({name:result.name,token:result.token}))
+         
+          console.log(result.token,"strt");
+          dispatch(adminActions.adminAdd({token:result.token}))
         }
-        navigate('/home');
+        navigate('/admin/dashboard');
       })
       .catch((error) => {
         console.log(error.response.data.error);
@@ -38,32 +40,32 @@ function Login() {
   return (
     <div className='login-body'>
 <div className="card">
-      <h1>user Log In</h1>
+      <h1 className='admin-login'>Log In</h1>
       <form onSubmit={handleSubmit}>
 
         <div className="form-group">
-          <label >Email</label>
+          <label className='admin-label' >Email</label>
           <input type="email" id="email" name="email"
           onChange={(e)=>{setEmail(e.target.value)}}
            className="form-control" />
         </div>
   
         <div className="form-group">
-          <label >Password</label>
+          <label className='admin-label'>Password</label>
           <input type="password" id="password" 
           onChange={(e)=>{setPassword(e.target.value)}}
           name="password" className="form-control" />
         </div>
 
-        <div className='btn-div'>
-        <button type="submit"  className="login-btn">Log In</button>
+        <div className='admin-btn-div'>
+        <button type="submit"  className="adminlogin-btn">Log In</button>
         </div>
 
       </form>
-
+{/* 
       <div className='btn-div' >
-        <button style={{marginTop:"20px"}} onClick={()=>{navigate('/signup')}} className="btn-signup">Sign Up</button>
-      </div>
+        <button style={{marginTop:"20px"}} onClick={()=>{navigate('/signup')}} className="btn-primary">Sign Up</button>
+      </div> */}
       <p>{error}</p>
     </div>
 

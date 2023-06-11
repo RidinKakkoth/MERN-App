@@ -9,7 +9,7 @@ router.post("/login",adminLogin)
 
 router.get("/userdata",userData)
 
-router.get("deleteuser/:id",deleteUser)
+router.get("/deleteuser/:id",deleteUser)
 
 router.post("edituser",editUser)
 

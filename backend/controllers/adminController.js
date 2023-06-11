@@ -12,13 +12,14 @@ const createToken=(id)=>{
 
 const adminLogin=async(req,res)=>{
     
+   
     
     try {
 
         let adminLogin={
             status: false,
             token: null,
-            name: null,
+            name:null
         }
 
         const{email,password}=req.body
@@ -30,13 +31,14 @@ const adminLogin=async(req,res)=>{
       }
 
         const admin=await Admin.findOne({email:email})
-
+        
         if(!admin){
             
             return res.status(400).json({ error: "Invalid credentials" });
         }
-
+        
         const match=await bcrypt.compare(password,admin.password)
+       
 
         if(!match){
             
@@ -96,20 +98,24 @@ const userData=async(req,res)=>{
 
 }
 
-const deleteUser=async(req,res)=>{
-            
-            console.log(req.params.id);
-            const userId=req.params.id
-
-            const jwtToken=jwt.verify(req.cookies.jwt.token,"secretCodeforUser")
-
-            if(jwtToken){
-                User.deleteOne({_id:userId}).then(()=>{
-                    console.log("deleted");
-                    res.status(200)
-                })
-            }
-}
+const deleteUser = async (req, res) => {
+    try {
+      const userId = req.params.id;
+      const jwtToken = jwt.verify(req.cookies.jwt.token, "secretCodeforUser");
+  
+      if (jwtToken) {
+        await User.deleteOne({ _id: userId });
+        console.log("deleted");
+        res.sendStatus(200);
+      } else {
+        res.sendStatus(401); // Unauthorized
+      }
+    } catch (error) {
+      console.log(error);
+      res.sendStatus(500); // Internal Server Error
+    }
+  };
+  
 
 const editUser=async(req,res)=>{
 
