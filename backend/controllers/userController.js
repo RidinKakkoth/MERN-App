@@ -4,7 +4,8 @@ const jwt=require('jsonwebtoken')
 const inputValidator = require('../middleware/inputValidator');
 
 const createToken=(id)=>{
-    return  jwt.sign({_id:id},process.env.SECRET,{expiresIn:'3d'})
+    console.log(id,"iiiiiiiiiiiiiiiii");
+    return  jwt.sign({id:id},"secretCodeforUser",{expiresIn:'3d'})
 }
 
 //login user
@@ -12,7 +13,15 @@ const createToken=(id)=>{
 const loginUser=async(req,res)=>{
 
     try {
+
+        let userLogin={
+            status: false,
+            token: null,
+            name: null,
+        }
+
         const{email,password}=req.body
+       
       const inputError=  inputValidator.loginInputValidator(email,password)
       
       if(inputError){
@@ -34,10 +43,31 @@ const loginUser=async(req,res)=>{
         }
         
         //create token
+        let token = createToken(user._id);
+        userLogin.token = token;
+        userLogin.status = true;
+        let userName = user.firstname + " " + user.lastname;
+        userLogin.name = userName; // Change property name from "userName" to "name"
+        
+        
 
-        const token=createToken(user._id)
+        let obj = {
+          token,
+          userName
+        };
+        
+        res.cookie("jwt", obj, {
+          httpOnly: true,
+          maxAge: 6000 * 1000,
+          secure:false
+        })
+          .status(200)
+          .send({ userLogin });
+        
 
-        res.status(200).json({msg: 'User signed in successfully', user: token })
+
+
+        // res.status(200).json({msg: 'User signed in successfully', userLogin })
 
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -87,4 +117,71 @@ const signupUser=async(req,res)=>{
     }
 }
 
-module.exports={loginUser,signupUser}
+
+const getProfile=async(req,res)=>{
+    try {
+    
+        
+        if (!req.cookies || !req.cookies.jwt) {
+          return res.status(401).json({ error: "Unauthorized" });
+        }
+        
+   
+        const jwtToken = req.cookies.jwt.token; // Assuming your token is stored as { token: "..." }
+        
+        const decodedToken = jwt.verify(jwtToken,"secretCodeforUser");
+      
+        const userId = decodedToken.id; // Assuming your token payload has the user ID stored as _id
+       
+      
+        try {
+          const user = await User.findById(userId);
+     
+      
+          if (!user) {
+            return res.status(404).json({ error: "User not found" });
+          }
+      
+          return res.status(200).json({ user });
+        } catch (error) {
+          return res.status(500).json({ error: "Database error" });
+        }
+      } catch (error) {
+        return res.status(403).json({ error: "Token verification failed" });
+      }
+      
+}
+
+const editProfile= async(req,res)=>{
+    try {
+        
+       const jwtToken = req.cookies.jwt.token;
+       const decode=jwt.verify(jwtToken,"secretCodeforUser")
+       console.log(decode);
+        if(!decode.id){
+            throw new Error("Invalid Token")
+        }
+        const userData = await User.findOne({_id:decode.id})
+
+        if(!userData){
+            throw new Error("User not found")
+        }
+        if(req.file&&req.file.path){
+            userData.image=req.file.filename;
+            console.log(userData);
+            const url =req.file.path;
+            await userData.save()
+            console.log("success")
+            res.status(200).send({success:true,url})
+        }else{
+            throw new Error("No image is there")
+        }
+        
+    } catch (error) {
+        res.status(500).json({error:'Internal server error'});
+    }
+  }
+
+
+
+module.exports={loginUser,signupUser,getProfile,editProfile}

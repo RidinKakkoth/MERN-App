@@ -19,6 +19,7 @@ const signupInputValidator = (firstname, lastname, email, password, phone) => {
 };
 
 const loginInputValidator=(email,password)=>{
+ 
   if (!email || !password ) {
     throw new Error('All fields must be filled');
   }

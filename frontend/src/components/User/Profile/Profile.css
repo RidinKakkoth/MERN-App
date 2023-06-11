@@ -1,0 +1,41 @@
+
+  .profile-page{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .profile-card {
+    width: 400px;
+    padding: 20px;
+    margin-top: 100px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(152, 3, 139, 0.4);
+
+  }
+    
+  .profile-page h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #660f5b;
+      font-size: larger;
+    }
+    
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.7rem;
+      color: #660f5b;
+      font-size: large;
+    }
+    .file{
+        color: #660f5b;
+    }
+.span-profile{
+  color: black;
+}
