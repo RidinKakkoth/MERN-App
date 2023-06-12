@@ -22,7 +22,7 @@
 }
 
 .logout{
-  margin-right: 100px;
+  margin-right: 50px;
   margin-top: 10px;
   width: 50px;
   color: white;
@@ -32,15 +32,26 @@
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .profile{
-    margin-right: 50px;
+    margin-right: 20px;
     color: rgb(255, 255, 255);
     font-size: 1.8rem;
     cursor: pointer;
     
+}
+.profile:hover{
+    color: rgb(0, 255, 0);
 }
 .nav-right{
     display: flex;
 }
 .lgdiv{
     margin-top: 10px;
+}
+
+.username{
+    margin-top: 15px;
+    margin-right: 4rem;
+    color: rgb(255, 255, 255);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 }

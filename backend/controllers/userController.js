@@ -161,18 +161,18 @@ const editProfile= async(req,res)=>{
         
        const jwtToken = req.cookies.jwt.token;
        const decode=jwt.verify(jwtToken,"secretCodeforUser")
-       console.log(decode);
+
         if(!decode.id){
             throw new Error("Invalid Token")
         }
         const userData = await User.findOne({_id:decode.id})
+      
 
         if(!userData){
             throw new Error("User not found")
         }
         if(req.file&&req.file.path){
             userData.image=req.file.filename;
-            console.log(userData);
             const url =req.file.path;
             await userData.save()
             console.log("success")

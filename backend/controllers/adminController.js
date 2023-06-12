@@ -5,12 +5,12 @@ const bcrypt=require("bcrypt")
 const jwt=require("jsonwebtoken")
 
 const createToken=(id)=>{
-    
+    console.log(id);
     return  jwt.sign({id:id},"secretCodeforUser",{expiresIn:'3d'})
 }
 
 
-const adminLogin=async(req,res)=>{
+const adminSignin=async(req,res)=>{
     
    
     
@@ -58,7 +58,7 @@ const adminLogin=async(req,res)=>{
         };
         
         res.cookie("jwt", obj, {
-          httpOnly: true,
+          httpOnly: false, //=====================
           maxAge: 6000 * 1000,
           secure:false
         })
@@ -154,5 +154,5 @@ const editUser=async(req,res)=>{
 
 
 module.exports={
-    adminLogin,userData,deleteUser,editUser
+    adminSignin,userData,deleteUser,editUser
 }

@@ -2,10 +2,10 @@ const express=require("express")
 
 const router=express.Router()
 
-const{adminLogin,userData,editUser,deleteUser}=require('../controllers/adminController')
+const{adminSignin,userData,editUser,deleteUser}=require('../controllers/adminController')
 
 
-router.post("/login",adminLogin)
+router.post("/login",adminSignin)
 
 router.get("/userdata",userData)
 

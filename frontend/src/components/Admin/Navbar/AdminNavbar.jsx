@@ -1,8 +1,9 @@
 import React from 'react'
 import { useDispatch } from "react-redux";
 import { useCookies } from "react-cookie";
-import { adminActions } from '../../../store/AdminAuth';
+// import { adminActions } from '../../../store/AdminAuth';
 import { BiLogOut } from 'react-icons/bi';
+import { adminLogout } from '../../../store/AdminAuth';
 
 import './AdminNavbar.css'
 import { useNavigate } from 'react-router-dom'
@@ -13,9 +14,9 @@ function AdminNavbar() {
     const dispatch=useDispatch()
     const [cookie,setCookie,removeCookie]=useCookies(['jwt'])
 
-    const adminLogout=()=>{
+    const handleAdminLogout=()=>{
             removeCookie('jwt')
-            dispatch(adminActions.adminLogout())
+            dispatch(adminLogout())
             navigate('/admin')
     }
 
@@ -25,7 +26,7 @@ function AdminNavbar() {
          <div className='navbar-admin'>
             <span className='dashboard' onClick={()=>{navigate('/admin/dashboard')}}>Dasboard</span>
              <div className='nav-right-admin'>
-                  <span className='admin-logout' onClick={adminLogout}>{<BiLogOut/>} Logout</span>
+                  <span className='admin-logout' onClick={handleAdminLogout}>{<BiLogOut/>} Logout</span>
              </div>
       </div>
     </div>

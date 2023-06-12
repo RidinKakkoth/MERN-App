@@ -2,16 +2,20 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { adminActions } from '../../../store/AdminAuth'
+import { adminAdd } from '../../../store/AdminAuth';
 
 import axios from 'axios'
 import { adminApi } from '../../../store/Api'
 import "./Login.css"
+// import { useCookies } from 'react-cookie';
 
 function Login() {
   const dispatch = useDispatch()
   const[email,setEmail]=useState("")
   const[password,setPassword]=useState("")
   const[error,setError]=useState(null)
+
+  // const [cookies, setCookie] = useCookies(['jwt']);//=================
 
   const navigate=useNavigate()
 
@@ -26,10 +30,15 @@ function Login() {
         const result=response.data.adminLogin
         if(result.status){
          
-          console.log(result.token,"strt");
-          dispatch(adminActions.adminAdd({token:result.token}))
+          // setCookie('jwt', result.token);//====================
+          console.log(result,"strt");
+          // dispatch(adminActions.adminAdd({token:result.token}))
+          dispatch(adminAdd({token:result.token}))
+          navigate('/admin/dashboard');
         }
-        navigate('/admin/dashboard');
+        else{
+          // setError(result.)
+        }
       })
       .catch((error) => {
         console.log(error.response.data.error);

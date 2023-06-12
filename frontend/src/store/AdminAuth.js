@@ -8,16 +8,17 @@ const adminAuth=createSlice({
             adminToken:null
         },
         reducers:{
-            adminAdd(state,actions){
-                const newItem=actions.payload
+            adminAdd(state,action){
+                const newItem=action.payload
                 
                 state.adminToken=newItem.token
             },
-            adminLogout(state,actions){
-                state.token=""
+            adminLogout(state,action){
+                state.adminToken=""
             }
         }
 })
 
-export const adminActions=adminAuth.actions
+// export const adminActions=adminAuth.action
+export const { adminAdd, adminLogout } = adminAuth.actions;
 export default adminAuth

@@ -64,7 +64,7 @@ function Login() {
       <div className='btn-div' >
         <button style={{marginTop:"20px"}} onClick={()=>{navigate('/signup')}} className="btn-signup">Sign Up</button>
       </div>
-      <p>{error}</p>
+      <p className='error'>{error}</p>
     </div>
 
     </div>
