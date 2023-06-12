@@ -58,7 +58,7 @@ const loginUser=async(req,res)=>{
         };
         
         res.cookie("jwt", obj, {
-          httpOnly: true,
+          httpOnly: false,
           maxAge: 6000 * 1000,
           secure:false
         })
@@ -176,7 +176,7 @@ const editProfile= async(req,res)=>{
             const url =req.file.path;
             await userData.save()
             console.log("success")
-            res.status(200).send({success:true,url})
+            res.status(200).send({success:true,url,message:"success"})
         }else{
             throw new Error("No image is there")
         }

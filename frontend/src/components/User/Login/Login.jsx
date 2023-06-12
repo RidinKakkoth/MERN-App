@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { UserActions } from '../../../store/UserAuth'
+import { userAddDetails } from '../../../store/UserAuth'
 
 import axios from 'axios'
 import { userApi } from '../../../store/Api'
 import "./UserLogin.css"
+import { Cookies, useCookies } from 'react-cookie'
+
+// import Cookies from 'universal-cookie';
 
 function Login() {
   const dispatch = useDispatch()
@@ -14,6 +17,11 @@ function Login() {
   const[error,setError]=useState(null)
 
   const navigate=useNavigate()
+
+  const [cookies, setCookie] = useCookies(['jwt']);
+
+
+
 
   const handleSubmit=async(e)=>{
     e.preventDefault()
@@ -24,10 +32,16 @@ function Login() {
     },{ withCredentials: true })
       .then((response) => {
         const result=response.data.userLogin
+        console.log(result.token);
         if(result.status){
-          dispatch(UserActions.userAddDetails({name:result.name,token:result.token}))
+          console.log(result.name,"sttttttttttttttttttttttttt");
+          dispatch(  userAddDetails({name:result.name,token:result.token}))
+
+          // setCookie('jwt', result.token, { path: '/' });
+
+       
+          navigate('/home');
         }
-        navigate('/home');
       })
       .catch((error) => {
         console.log(error.response.data.error);

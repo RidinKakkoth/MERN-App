@@ -7,18 +7,19 @@ const UserAuth = createSlice({
         userName:null
     },
     reducers:{
-        userAddDetails(state,actions){
-            const newItem = actions.payload;
+        userAddDetails(state,action){
+            const newItem = action.payload;
             state.userName =newItem.name
             state.userToken = newItem.token 
+            console.log(newItem,"nwwwwwwwwwwwwwwwwwwwww");
             
         },
-        userLogout(state,actions){
+        userLogout(state,action){
             state.userName=""
             state.userToken=""
         }
     }
 })
 
-export const UserActions = UserAuth.actions
+export const {userAddDetails,userLogout} = UserAuth.actions
 export default UserAuth

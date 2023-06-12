@@ -6,21 +6,29 @@ import HomePage from '../pages/User page/HomePage'
 import ProfilePage from '../pages/User page/ProfilePage'
 import { useCookies } from 'react-cookie'
 import { useDispatch, useSelector } from 'react-redux'
-import { UserActions } from '../store/UserAuth'
+import { userAddDetails } from '../store/UserAuth'
 
 function UserRoute() {
 
 const [cookies]=useCookies(['jwt'])
 const dispatch=useDispatch()
 
+console.log(cookies, "cookies");
+
+
 useEffect(()=>{
 
-  if(cookies.jwt){
-    dispatch(UserActions.userAddDetails({name:cookies.jwt.name,token:cookies.jwt.token}))
-  }
-},[cookies.jwt,dispatch])
+  console.log(cookies.jwt,"cccccccccccccccckkkkkkkkkkkkkk");
 
-const userToken=useSelector((state)=>state.user.userToken)
+  if(cookies.jwt){
+    dispatch(userAddDetails({name:cookies.jwt.userName,token:cookies.jwt.token}))
+  }
+},[cookies,dispatch])
+
+// const userToken=useSelector((state)=>state.User.userToken)
+const userToken = useSelector((state) => state.user.userToken);
+console.log(userToken,"uttttttttttttttt");
+
 
   return (
     <div>

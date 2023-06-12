@@ -5,7 +5,7 @@ import { CgProfile } from 'react-icons/cg';
 
 import { useDispatch } from 'react-redux';
 import { useCookies } from 'react-cookie';
-import { UserActions } from '../../../store/UserAuth';
+import { userLogout } from '../../../store/UserAuth';
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
@@ -17,10 +17,10 @@ function Navbar() {
     
     const userName=useSelector((state)=>state.user.userName)
 
-    const userLogout=()=>{
+    const handleUserLogout=()=>{
           removeCookie('jwt')
 
-          dispatch(UserActions.userLogout())
+          dispatch(userLogout())
           navigate('/')
     }
 
@@ -35,7 +35,7 @@ function Navbar() {
           <p className='username'>Hi: {userName}</p>
           </div>
             <div className='lgdiv'>
-            <span className='logout' onClick={userLogout}> {<BiLogOut/>} Logout</span>
+            <span className='logout' onClick={handleUserLogout}> {<BiLogOut/>} Logout</span>
             </div>
         </div>
       </div>

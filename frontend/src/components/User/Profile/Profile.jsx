@@ -9,6 +9,8 @@ function Profile() {
   const [image, setImage] = useState(null);
   const [edited, setEdited] = useState(0);
   const [preview, setPreview] = useState("");
+  const[error,setError]=useState("")
+  
 
   useEffect(() => {
     axios.get(`${userApi}profile`, { withCredentials: true })
@@ -27,7 +29,7 @@ function Profile() {
       const url = URL.createObjectURL(file);
       setImage(file);
       setPreview(url);
-      setOpen(true)
+      setOpen(preview)
     }
   };
 
@@ -45,10 +47,13 @@ function Profile() {
       .then((response) => {
         setImage(response.data.image);
         setEdited(1);
-        setOpen(false)
+        // setOpen(false)
+        setError(response.data.message)
+      
       })
       .catch((error) => {
         console.log(error);
+        setError("failed")
       });
   };
 
@@ -83,7 +88,9 @@ function Profile() {
         </div>
         <button className="btn btn-primary mt-3" onClick={submitUpdates}>
           Upload
+          
         </button>
+        <span style={{color:"green",marginLeft:"10px",fontWeight:"bold"}}>{error}</span>
       </div>
     </div>
   );
