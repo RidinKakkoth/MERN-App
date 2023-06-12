@@ -12,10 +12,11 @@ function AdminNavbar() {
     const navigate=useNavigate()
 
     const dispatch=useDispatch()
-    const [cookie,setCookie,removeCookie]=useCookies(['jwt'])
+    const [cookie,setCookie,removeCookie]=useCookies(['adminCookie'])
 
     const handleAdminLogout=()=>{
-            removeCookie('jwt')
+      console.log("looooooooooooog");
+            removeCookie('adminCookie')
             dispatch(adminLogout())
             navigate('/admin')
     }

@@ -10,17 +10,19 @@ import { adminAdd } from '../store/AdminAuth'
 
 function AdminRoute() {
 
-const[cookies]=useCookies(['jwt'])
+const[cookies]=useCookies(['adminCookie'])
 const dispatch=useDispatch()
+console.log(cookies,"coooook");
 
 useEffect(()=>{
-
+  
   if(Object.keys(cookies).length>0){
-  dispatch(adminAdd({token:cookies?.jwt.token}))
+  dispatch(adminAdd({token:cookies.adminCookie.token}))
   }
-})
+},[])
 
 let Admin = useSelector(state=> state.Admin.adminToken)
+console.log(Admin,"aaaaaaaaaaaaaaaaaa");
 
 
   return (

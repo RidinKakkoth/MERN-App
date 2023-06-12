@@ -34,7 +34,7 @@ function Login() {
         const result=response.data.userLogin
         console.log(result.token);
         if(result.status){
-          console.log(result.name,"sttttttttttttttttttttttttt");
+      
           dispatch(  userAddDetails({name:result.name,token:result.token}))
 
           // setCookie('jwt', result.token, { path: '/' });

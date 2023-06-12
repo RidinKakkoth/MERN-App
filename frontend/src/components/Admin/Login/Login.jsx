@@ -30,9 +30,9 @@ function Login() {
         const result=response.data.adminLogin
         if(result.status){
          
-          // setCookie('jwt', result.token);//====================
-          console.log(result,"strt");
-          // dispatch(adminActions.adminAdd({token:result.token}))
+  
+          console.log(result,"rrrrrrrrrrrrrrrrrreeeeeeeeeeeeeeee");
+
           dispatch(adminAdd({token:result.token}))
           navigate('/admin/dashboard');
         }

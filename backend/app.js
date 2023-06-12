@@ -6,9 +6,11 @@ const userRoute = require('./routes/user');
 const adminRoute=require("./routes/admin")
 const cors = require('cors');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 
 const app = express();
+app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(cors());
@@ -23,9 +25,7 @@ app.use(cors({
   credentials:true
 }))
 
-const cookieParser = require('cookie-parser');
 
-app.use(cookieParser());
 
 
 app.use(express.json());

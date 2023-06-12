@@ -12,6 +12,7 @@ const adminAuth=createSlice({
                 const newItem=action.payload
                 
                 state.adminToken=newItem.token
+                console.log(newItem,"yyyyyyyyyyyyyyyyyyyyyyy");
             },
             adminLogout(state,action){
                 state.adminToken=""

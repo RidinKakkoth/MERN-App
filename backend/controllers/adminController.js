@@ -6,7 +6,7 @@ const jwt=require("jsonwebtoken")
 
 const createToken=(id)=>{
     console.log(id);
-    return  jwt.sign({id:id},"secretCodeforUser",{expiresIn:'3d'})
+    return  jwt.sign({id:id},"secretCodeforAdmin",{expiresIn:'3d'})
 }
 
 
@@ -57,8 +57,8 @@ const adminSignin=async(req,res)=>{
           token
         };
         
-        res.cookie("jwt", obj, {
-          httpOnly: false, //=====================
+        res.cookie("adminCookie", obj, {
+          httpOnly: false, 
           maxAge: 6000 * 1000,
           secure:false
         })
@@ -80,10 +80,11 @@ const userData=async(req,res)=>{
 
     try {
         // const jwtToken=req.cookies.jwt.token
-        // const decodeToken=jwt.verify(jwtToken,"secretCodeforUser")    
+        // const decodeToken=jwt.verify(jwtToken,"secretCodeforAdmin")    
         // const adminId=decodeToken.id
             //no need to decode admin id , need all userdata
-        const jwtToken = jwt.verify(req.cookies.jwt.token, "secretCodeforUser"); 
+        const jwtToken = jwt.verify(req.cookies.adminCookie.token, "secretCodeforAdmin"); 
+       
 
         if(jwtToken){
                 User.find().then((data)=>{
@@ -101,7 +102,7 @@ const userData=async(req,res)=>{
 const deleteUser = async (req, res) => {
     try {
       const userId = req.params.id;
-      const jwtToken = jwt.verify(req.cookies.jwt.token, "secretCodeforUser");
+      const jwtToken = jwt.verify(req.cookies.adminCookie.token, "secretCodeforAdmin");
   
       if (jwtToken) {
         await User.deleteOne({ _id: userId });
@@ -119,7 +120,7 @@ const deleteUser = async (req, res) => {
 
 const editUser=async(req,res)=>{
 
-    const jwtToken=jwt.verify(req.cookies.jwt.token,"secretCodeforUser")
+    const jwtToken=jwt.verify(req.cookies.adminCookie.token,"secretCodeforAdmin")
 
     if(jwtToken){
 
