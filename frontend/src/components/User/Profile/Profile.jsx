@@ -29,7 +29,7 @@ function Profile() {
       const url = URL.createObjectURL(file);
       setImage(file);
       setPreview(url);
-      setOpen(preview)
+      setOpen(false)
     }
   };
 
@@ -45,9 +45,9 @@ function Profile() {
       withCredentials: true,
     })
       .then((response) => {
-        setImage(response.data.image);
+        // setImage(response.data.image);
+        setOpen(response.data.url)
         setEdited(1);
-        // setOpen(false)
         setError(response.data.message)
       
       })
